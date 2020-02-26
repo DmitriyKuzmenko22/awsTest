@@ -2,7 +2,7 @@ version: '3'
 
 services:
   awsTest-app-container:
-    image: awsTest-app:1
+    image: awstest-app:1
     build:
       context: ./
       dockerfile: Dockerfile
