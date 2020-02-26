@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  awsTest-app-container:
+  awstest-app-container:
     image: awstest-app:1
     build:
       context: ./
