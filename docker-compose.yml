@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  springboot-docker-compose-app-container:
-    image: springboot-docker-compose-app:1
+  awsTest-app-container:
+    image: awsTest-app:1
     build:
       context: ./
       dockerfile: Dockerfile
