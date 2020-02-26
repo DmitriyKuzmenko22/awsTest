@@ -1,0 +1,12 @@
+<configuration>
+  
+  <appender name="ACCESS" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <Pattern>combined</Pattern>
+      <Pattern>%t{yyyy-MM-dd HH:mm:ss.SSS} ACCESS [%a|%i{X-Forwarded-For}][%s] %replace(%fullRequest - %fullResponse){'\n', ' '})</Pattern>
+    </encoder>
+  </appender>
+
+  <appender-ref ref="ACCESS" />
+
+</configuration>
