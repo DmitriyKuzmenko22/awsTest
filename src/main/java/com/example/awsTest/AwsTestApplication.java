@@ -16,59 +16,59 @@ import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 @SpringBootApplication
 public class AwsTestApplication {
 
-	@Value("${bp.access.secure.only:true}")
-	private boolean accessSecureOnly;
-
-	@Value("${server.accesslog.enabled:false}")
-	private boolean accessLogEnabled;
-
-	@Value("${server.http.port}")
-	private Integer httpPort;
-
-	@Value("${server.port}")
-	private Integer httpsPort;
-
-	@Bean
-	public ServletWebServerFactory servletContainer() {
-		TomcatServletWebServerFactory tomcat = null;
-
-		if (accessSecureOnly) {
-			tomcat = new TomcatServletWebServerFactory() {
-				@Override
-				protected void postProcessContext(Context context) {
-					SecurityConstraint securityConstraint = new SecurityConstraint();
-					securityConstraint.setUserConstraint(String.valueOf(httpsPort));
-					SecurityCollection collection = new SecurityCollection();
-					collection.addPattern("/*");
-					securityConstraint.addCollection(collection);
-					context.addConstraint(securityConstraint);
-				}
-			};
-		} else {
-			tomcat = new TomcatServletWebServerFactory();
-		}
-
-		if (httpPort != null) {
-			tomcat.addAdditionalTomcatConnectors(createAdditionalConnector());
-		}
-
-		if (accessLogEnabled) {
-			LogbackValve logbackValve = new LogbackValve();
-			logbackValve.setFilename(Config.ACCESS_LOG_CONFIG);
-			tomcat.addContextValves(logbackValve);
-		}
-
-		return tomcat;
-	}
-
-	private Connector createAdditionalConnector() {
-		Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
-		connector.setPort(httpPort);
-		if (accessSecureOnly) {
-			connector.setRedirectPort(httpsPort);
-		}
-		return connector;
-	}
+//	@Value("${bp.access.secure.only:true}")
+//	private boolean accessSecureOnly;
+//
+//	@Value("${server.accesslog.enabled:false}")
+//	private boolean accessLogEnabled;
+//
+//	@Value("${server.http.port}")
+//	private Integer httpPort;
+//
+//	@Value("${server.port}")
+//	private Integer httpsPort;
+//
+//	@Bean
+//	public ServletWebServerFactory servletContainer() {
+//		TomcatServletWebServerFactory tomcat = null;
+//
+//		if (accessSecureOnly) {
+//			tomcat = new TomcatServletWebServerFactory() {
+//				@Override
+//				protected void postProcessContext(Context context) {
+//					SecurityConstraint securityConstraint = new SecurityConstraint();
+//					securityConstraint.setUserConstraint(String.valueOf(httpsPort));
+//					SecurityCollection collection = new SecurityCollection();
+//					collection.addPattern("/*");
+//					securityConstraint.addCollection(collection);
+//					context.addConstraint(securityConstraint);
+//				}
+//			};
+//		} else {
+//			tomcat = new TomcatServletWebServerFactory();
+//		}
+//
+//		if (httpPort != null) {
+//			tomcat.addAdditionalTomcatConnectors(createAdditionalConnector());
+//		}
+//
+//		if (accessLogEnabled) {
+//			LogbackValve logbackValve = new LogbackValve();
+//			logbackValve.setFilename(Config.ACCESS_LOG_CONFIG);
+//			tomcat.addContextValves(logbackValve);
+//		}
+//
+//		return tomcat;
+//	}
+//
+//	private Connector createAdditionalConnector() {
+//		Connector connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+//		connector.setPort(httpPort);
+//		if (accessSecureOnly) {
+//			connector.setRedirectPort(httpsPort);
+//		}
+//		return connector;
+//	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(AwsTestApplication.class, args);
