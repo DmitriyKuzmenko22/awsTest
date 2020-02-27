@@ -7,6 +7,6 @@ services:
       context: ./
       dockerfile: Dockerfile
     volumes:
-      - /data/awstest-app
+      - /data/awstest
     ports:
       - "5000:5000"
