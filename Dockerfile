@@ -1,5 +1,5 @@
 FROM openjdk:8
 VOLUME /tmp
-ADD target/awsTest.jar awsTest.jar
+ADD target/awstest.jar awstest.jar
 EXPOSE 5000
-ENTRYPOINT ["java","-jar","awsTest.jar"]
+ENTRYPOINT ["java","-jar","awstest.jar"]
