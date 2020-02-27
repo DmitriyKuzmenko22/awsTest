@@ -2,7 +2,7 @@ version: '3'
 
 services:
   awstest-app-container:
-    image: awstest-app:1
+    image: awstest:1
     build:
       context: ./
       dockerfile: Dockerfile
